@@ -1,3 +1,4 @@
+import TagsMenu from '../TagMenu/TagsMenu';
 import css from './Header.module.css';
 import Link from 'next/link';
 
@@ -15,9 +16,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="/notes" className={css.link}>
-              Notes
-            </Link>
+            <TagsMenu />
           </li>
         </ul>
       </nav>

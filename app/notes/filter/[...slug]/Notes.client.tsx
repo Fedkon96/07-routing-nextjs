@@ -5,7 +5,7 @@ import { GrFormAdd, GrDocument } from 'react-icons/gr';
 
 import { useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { fetchNotes } from '../../lib/api';
+import { fetchNotes } from '@/lib/api';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import Modal from '@/components/Modal/Modal';
 import Pagination from '@/components/Pagination/Pagination';
@@ -14,13 +14,18 @@ import NoteForm from '@/components/NoteForm/NoteForm';
 import { useDebouncedCallback } from 'use-debounce';
 import Loader from '@/components/Loader/Loader';
 
-const NotesClient = () => {
+interface NotesClientProps {
+  tag: string;
+}
+
+const NotesClient = ({ tag }: NotesClientProps) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
+
   const { data, isSuccess, isLoading } = useQuery({
-    queryKey: ['notes', page, search],
-    queryFn: () => fetchNotes({ page, search }),
+    queryKey: ['notes', page, search, tag],
+    queryFn: () => fetchNotes({ page, search, tag }),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
@@ -61,7 +66,7 @@ const NotesClient = () => {
       {isSuccess && data.notes.length > 0 ? (
         <NoteList notes={data.notes} />
       ) : (
-        <p>Notes not found</p>
+        !isLoading && <p>Notes not found</p>
       )}
       {isLoading && !data && <Loader />}
       {modalIsOpen && (
