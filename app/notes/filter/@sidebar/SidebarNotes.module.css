@@ -21,3 +21,7 @@
   background-color: #444;
   color: #ddd;
 }
+
+.menuLink:hover::first-letter {
+  color: #0d6efd;
+}

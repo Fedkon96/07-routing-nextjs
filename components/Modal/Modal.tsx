@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import css from "./Modal.module.css";
-import { createPortal } from "react-dom";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useEffect } from 'react';
+import css from './Modal.module.css';
+import { createPortal } from 'react-dom';
+import { HiMiniXMark } from 'react-icons/hi2';
 
 interface ModalProps {
   onClose: () => void;
@@ -17,17 +17,17 @@ const Modal = ({ onClose, children }: ModalProps) => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         onClose();
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
     };
   }, [onClose]);
 
@@ -44,7 +44,7 @@ const Modal = ({ onClose, children }: ModalProps) => {
           onClick={onClose}
           aria-label="Close modal"
         >
-          {<IoIosCloseCircleOutline />}
+          <HiMiniXMark className={css.closeX} />
         </button>
         {children}
       </div>

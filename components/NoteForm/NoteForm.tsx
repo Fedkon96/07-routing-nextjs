@@ -3,7 +3,9 @@ import { Field, Form, Formik, ErrorMessage, type FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../../lib/api';
-import { TfiArrowCircleDown } from 'react-icons/tfi';
+import { SlArrowDown } from 'react-icons/sl';
+import { HiMiniCheck } from 'react-icons/hi2';
+import { HiMiniXMark } from 'react-icons/hi2';
 import { Tag } from '@/types/note';
 
 interface FormValues {
@@ -53,22 +55,27 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
     >
       <Form className={css.form}>
         <div className={css.formGroup}>
-          <label htmlFor="title">
+          <label className={css.display} htmlFor="title">
             Title
-            <Field id="title" type="text" name="title" className={css.input} />
+            <Field
+              id="title"
+              type="text"
+              name="title"
+              className={`${css.input} ${css.flex}`}
+            />
           </label>
           <ErrorMessage name="title" className={css.error} component="span" />
         </div>
 
         <div className={css.formGroup}>
-          <label htmlFor="content">
+          <label className={css.display} htmlFor="content">
             Content
             <Field
               as="textarea"
               id="content"
               name="content"
               rows={8}
-              className={css.textarea}
+              className={`${css.textarea} ${css.flex}`}
             />
           </label>
           <ErrorMessage name="content" className={css.error} component="span" />
@@ -77,8 +84,13 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
         <div className={css.formGroup}>
           <label className={css.arrowFather} htmlFor="tag">
             Tag
-            <TfiArrowCircleDown className={css.arrow} />
-            <Field as="select" id="tag" name="tag" className={css.select}>
+            <SlArrowDown className={css.arrow} />
+            <Field
+              as="select"
+              id="tag"
+              name="tag"
+              className={`${css.select} ${css.flex}`}
+            >
               <option value="Todo">Todo</option>
               <option value="Work">Work</option>
               <option value="Personal">Personal</option>
@@ -91,10 +103,10 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
 
         <div className={css.actions}>
           <button onClick={onClose} type="button" className={css.cancelButton}>
-            Cancel
+            <HiMiniXMark className={css.closeX} />
           </button>
           <button type="submit" className={css.submitButton} disabled={false}>
-            Create note
+            <HiMiniCheck className={css.closeV} />
           </button>
         </div>
       </Form>

@@ -23,21 +23,13 @@
   position: relative;
 }
 
-/* Modal.module.css */
-
 .closeButton {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  background: #fff;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
   border: none;
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
-  font-size: 20px;
   line-height: 0;
-  color: #333;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -45,8 +37,16 @@
   padding: 0;
 }
 
-.closeButton:hover {
-  background: #f2f2f2;
+.closeX {
+  width: 25px;
+  height: 25px;
+  fill: #0d6efd;
+}
+
+.closeX:hover,
+.close:focus {
+  fill: #025ce4;
+  stroke: #025ce4;
 }
 
 .closeButton:focus {
