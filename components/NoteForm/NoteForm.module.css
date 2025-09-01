@@ -21,6 +21,28 @@
   border: 1px solid #ced4da;
   border-radius: 4px;
   resize: none;
+  background-color: #f3f3f3;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.arrowFather {
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 81px;
+  right: 35px;
+  width: 18px;
+  height: 18px;
+}
+
+.select:hover .arrow,
+.select:focus .arrow {
+  fill: #0d6efd;
+  stroke: #0d6efd;
 }
 
 .actions {

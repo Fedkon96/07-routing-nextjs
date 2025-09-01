@@ -3,6 +3,7 @@ import { Field, Form, Formik, ErrorMessage, type FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../../lib/api';
+import { TfiArrowCircleDown } from 'react-icons/tfi';
 
 interface FormValues {
   title: string;
@@ -69,7 +70,10 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
         </div>
 
         <div className={css.formGroup}>
-          <label htmlFor="tag">Tag</label>
+          <label className={css.arrowFather} htmlFor="tag">
+            Tag
+          </label>
+          <TfiArrowCircleDown className={css.arrow} />
           <Field as="select" id="tag" name="tag" className={css.select}>
             <option value="Todo">Todo</option>
             <option value="Work">Work</option>

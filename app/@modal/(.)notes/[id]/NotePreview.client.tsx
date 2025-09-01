@@ -22,27 +22,14 @@ const NotePreview = () => {
   return (
     <Modal onClose={onClose}>
       {note && (
-        <div className={css.overlayPreview} onClick={onClose}>
-          <div
-            className={css.modalPreview}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className={css.closeButtonPreview}
-              onClick={onClose}
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
+        <div>
+          <h2 className={css.titlePreview}>{note.title}</h2>
 
-            <h2 className={css.titlePreview}>{note.title}</h2>
+          <div className={css.tagPreview}>{note.tag}</div>
 
-            <div className={css.tagPreview}>{note.tag}</div>
+          <p className={css.contentPreview}>{note.content}</p>
 
-            <p className={css.contentPreview}>{note.content}</p>
-
-            <div className={css.datePreview}>{note.createdAt}</div>
-          </div>
+          <div className={css.datePreview}>{note.createdAt}</div>
         </div>
       )}
       {isLoading && <p>Loading...</p>}
