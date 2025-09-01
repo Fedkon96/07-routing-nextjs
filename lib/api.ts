@@ -35,7 +35,17 @@ export async function fetchNotes({
   tag,
 }: FetchNotesParams): Promise<FetchNotesResponse> {
   const { data } = await api.get<FetchNotesResponse>('/notes', {
-    params: { search, page, tag, perPage: 6 },
+    params: { search, page, tag: tag?.trim() || undefined, perPage: 6 },
+  });
+  return data;
+}
+
+export async function fetchNotesAllTag({
+  search,
+  page,
+}: FetchNotesParams): Promise<FetchNotesResponse> {
+  const { data } = await api.get<FetchNotesResponse>('/notes', {
+    params: { search, page, perPage: 6 },
   });
   return data;
 }

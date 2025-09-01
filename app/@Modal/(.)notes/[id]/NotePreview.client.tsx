@@ -22,11 +22,26 @@ const NotePreview = () => {
   return (
     <Modal onClose={onClose}>
       {note && (
-        <div className={css.container}>
-          <h2 className={css.title}>{note.title}</h2>{' '}
-          <p className={css.description}>{note.content}</p>
-          <div className={css.footer}>
-            <span className={css.status}>{note.createdAt}</span>
+        <div className={css.overlayPreview} onClick={onClose}>
+          <div
+            className={css.modalPreview}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={css.closeButtonPreview}
+              onClick={onClose}
+              aria-label="Close modal"
+            >
+              &times;
+            </button>
+
+            <h2 className={css.titlePreview}>{note.title}</h2>
+
+            <div className={css.tagPreview}>{note.tag}</div>
+
+            <p className={css.contentPreview}>{note.content}</p>
+
+            <div className={css.datePreview}>{note.createdAt}</div>
           </div>
         </div>
       )}

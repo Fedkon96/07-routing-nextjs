@@ -15,7 +15,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import Loader from '@/components/Loader/Loader';
 
 interface NotesClientProps {
-  tag: string;
+  tag: string | undefined;
 }
 
 const NotesClient = ({ tag }: NotesClientProps) => {
