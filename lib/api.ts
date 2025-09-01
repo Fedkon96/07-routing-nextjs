@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Note } from '../types/note';
+import { Note, Tag } from '../types/note';
 
 const myKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
@@ -14,7 +14,7 @@ const api = axios.create({
 interface FetchNotesParams {
   page: number;
   search?: string;
-  tag?: string;
+  tag?: Tag;
 }
 
 interface FetchNotesResponse {
@@ -25,7 +25,7 @@ interface FetchNotesResponse {
 interface FetchNoteCreate {
   title: string;
   content: string;
-  tag: string;
+  tag: Tag;
 }
 
 // ! GET
@@ -50,34 +50,9 @@ export async function fetchNotes({
   const res = await api.get<FetchNotesResponse>('/notes', { params });
   return res.data;
 }
-// export async function fetchNotes({
-//   search,
-//   page,
-//   tag,
-// }: FetchNotesParams): Promise<FetchNotesResponse> {
-//   const { data } = await api.get<FetchNotesResponse>('/notes', {
-//     params: { search, page, tag: tag?.trim() || undefined, perPage: 6 },
-//   });
-//   return data;
-// }
-
-export async function fetchNotesAllTag({
-  search,
-  page,
-}: FetchNotesParams): Promise<FetchNotesResponse> {
-  const { data } = await api.get<FetchNotesResponse>('/notes', {
-    params: { search, page, perPage: 6 },
-  });
-  return data;
-}
 
 export async function fetchNoteId(id: string): Promise<Note> {
   const { data } = await api.get<Note>(`/notes/${id}`);
-  return data;
-}
-
-export async function fetchNoteTag(tag: string): Promise<Note> {
-  const { data } = await api.get<Note>(`/notes/${tag}`);
   return data;
 }
 

@@ -13,9 +13,10 @@ import NoteList from '@/components/NoteList/NoteList';
 import NoteForm from '@/components/NoteForm/NoteForm';
 import { useDebouncedCallback } from 'use-debounce';
 import Loader from '@/components/Loader/Loader';
+import { Tag } from '@/types/note';
 
 interface NotesClientProps {
-  tag: string | undefined;
+  tag: Tag | undefined;
 }
 
 const NotesClient = ({ tag }: NotesClientProps) => {

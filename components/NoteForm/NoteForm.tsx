@@ -4,11 +4,12 @@ import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../../lib/api';
 import { TfiArrowCircleDown } from 'react-icons/tfi';
+import { Tag } from '@/types/note';
 
 interface FormValues {
   title: string;
   content: string;
-  tag: string;
+  tag: Tag;
 }
 
 interface NoteFormProps {
@@ -52,35 +53,39 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
     >
       <Form className={css.form}>
         <div className={css.formGroup}>
-          <label htmlFor="title">Title</label>
-          <Field id="title" type="text" name="title" className={css.input} />
+          <label htmlFor="title">
+            Title
+            <Field id="title" type="text" name="title" className={css.input} />
+          </label>
           <ErrorMessage name="title" className={css.error} component="span" />
         </div>
 
         <div className={css.formGroup}>
-          <label htmlFor="content">Content</label>
-          <Field
-            as="textarea"
-            id="content"
-            name="content"
-            rows={8}
-            className={css.textarea}
-          />
+          <label htmlFor="content">
+            Content
+            <Field
+              as="textarea"
+              id="content"
+              name="content"
+              rows={8}
+              className={css.textarea}
+            />
+          </label>
           <ErrorMessage name="content" className={css.error} component="span" />
         </div>
 
         <div className={css.formGroup}>
           <label className={css.arrowFather} htmlFor="tag">
             Tag
+            <TfiArrowCircleDown className={css.arrow} />
+            <Field as="select" id="tag" name="tag" className={css.select}>
+              <option value="Todo">Todo</option>
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+              <option value="Meeting">Meeting</option>
+              <option value="Shopping">Shopping</option>
+            </Field>
           </label>
-          <TfiArrowCircleDown className={css.arrow} />
-          <Field as="select" id="tag" name="tag" className={css.select}>
-            <option value="Todo">Todo</option>
-            <option value="Work">Work</option>
-            <option value="Personal">Personal</option>
-            <option value="Meeting">Meeting</option>
-            <option value="Shopping">Shopping</option>
-          </Field>
           <ErrorMessage name="tag" className={css.error} component="span" />
         </div>
 

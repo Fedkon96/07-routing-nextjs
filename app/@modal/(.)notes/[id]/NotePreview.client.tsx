@@ -6,16 +6,27 @@ import { useParams, useRouter } from 'next/navigation';
 import { fetchNoteId } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 
-const NotePreview = () => {
+interface NotePreviewProps {
+  id?: string;
+}
+
+const NotePreview = ({ id: propId }: NotePreviewProps) => {
   const router = useRouter();
   const onClose = () => {
     router.back();
   };
 
-  const { id } = useParams<{ id: string }>();
-  const { data: note, isLoading } = useQuery({
+  const params = useParams<{ id: string }>();
+  const id = propId ?? params.id;
+
+  const {
+    data: note,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['note', id],
-    queryFn: () => fetchNoteId(id),
+    queryFn: () => fetchNoteId(id!),
+    enabled: Boolean(id),
     refetchOnMount: false,
   });
 
@@ -32,6 +43,7 @@ const NotePreview = () => {
           <div className={css.datePreview}>{note.createdAt}</div>
         </div>
       )}
+      {isError && <p>There was an error, please try again...</p>}
       {isLoading && <p>Loading...</p>}
     </Modal>
   );
