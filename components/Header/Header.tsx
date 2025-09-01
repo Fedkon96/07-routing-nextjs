@@ -1,4 +1,4 @@
-import TagsMenu from '../TagMenu/TagsMenu';
+import TagsMenu from '../TagsMenu/TagsMenu';
 import css from './Header.module.css';
 import Link from 'next/link';
 
